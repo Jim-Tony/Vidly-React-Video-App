@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Movies from './components/Movies';
+import Pagination from './components/Pagination';
 import {getMovies} from './services/fakeMovieService';
 class App extends Component {
   state = {
@@ -19,6 +20,9 @@ class App extends Component {
     const newMovies = this.state.movies.filter(obj=>obj._id!==movie._id);
     this.setState({movies:newMovies}); 
   }
+  handlePageChange = ()=>{
+    console.log('Page changed');
+  }
   render() { 
     return (
       <main className='container'>
@@ -27,6 +31,7 @@ class App extends Component {
           onDelete = {this.handleDelete}  
           onClick = {this.handleLike}
         />
+        <Pagination itemCount = {this.state.movies.length} pageSize={4} onPageChange = {this.handlePageChange} />
       </main>
     );
   }
