@@ -5,6 +5,8 @@ import Pagination from './components/Pagination';
 import {getMovies} from './services/fakeMovieService';
 class App extends Component {
   state = {
+    currentPage:1,
+    pageSize:4,
     movies:getMovies(),
   };
   // checkLike = ()=>{
@@ -20,10 +22,12 @@ class App extends Component {
     const newMovies = this.state.movies.filter(obj=>obj._id!==movie._id);
     this.setState({movies:newMovies}); 
   }
-  handlePageChange = ()=>{
-    console.log('Page changed');
+  handlePageChange = page=>{
+    this.setState({currentPage:page})
   }
   render() { 
+    const count = this.state.movies.length;
+    const {currentPage,pageSize} = this.state;
     return (
       <main className='container'>
         <Movies 
@@ -31,7 +35,12 @@ class App extends Component {
           onDelete = {this.handleDelete}  
           onClick = {this.handleLike}
         />
-        <Pagination itemCount = {this.state.movies.length} pageSize={4} onPageChange = {this.handlePageChange} />
+        <Pagination 
+          itemCount = {count} 
+          currentPage = {currentPage} 
+          pageSize={pageSize} 
+          onPageChange = {this.handlePageChange} 
+        />
       </main>
     );
   }
