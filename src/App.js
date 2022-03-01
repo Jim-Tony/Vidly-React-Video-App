@@ -3,6 +3,8 @@ import './App.css';
 import Movies from './components/Movies';
 import Pagination from './components/Pagination';
 import {getMovies} from './services/fakeMovieService';
+import {paginate} from './utilities/paginate';
+import PropTypes from 'prop-types';
 class App extends Component {
   state = {
     currentPage:1,
@@ -27,16 +29,17 @@ class App extends Component {
   }
   render() { 
     const count = this.state.movies.length;
-    const {currentPage,pageSize} = this.state;
+    const {currentPage,pageSize,movies:moviesAll} = this.state;
+    const movies = paginate(moviesAll,currentPage,pageSize);
     return (
       <main className='container'>
         <Movies 
-          movies={this.state.movies}
+          movies={movies}
           onDelete = {this.handleDelete}  
           onClick = {this.handleLike}
         />
         <Pagination 
-          itemCount = {count} 
+          itemCount = {count}
           currentPage = {currentPage} 
           pageSize={pageSize} 
           onPageChange = {this.handlePageChange} 
@@ -45,5 +48,10 @@ class App extends Component {
     );
   }
 }
- 
+Pagination.propTypes = {
+  itemCount:PropTypes.number.isRequired,
+  currentPage:PropTypes.number.isRequired,
+  pageSize:PropTypes.number.isRequired,
+  onPageChange:PropTypes.func.isRequired,
+}
 export default App;

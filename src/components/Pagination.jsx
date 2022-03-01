@@ -15,5 +15,4 @@ const Pagination = (props) => {
         </nav>         
     );
 }
- 
 export default Pagination;
