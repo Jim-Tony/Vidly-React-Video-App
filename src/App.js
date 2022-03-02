@@ -3,7 +3,7 @@ import './App.css';
 import Movies from './components/Movies';
 import Pagination from './components/Pagination';
 import {getMovies} from './services/fakeMovieService';
-import {paginate} from './utilities/paginate';
+import {paginate} from './utils/paginate';
 import PropTypes from 'prop-types';
 class App extends Component {
   state = {
@@ -11,9 +11,6 @@ class App extends Component {
     pageSize:4,
     movies:getMovies(),
   };
-  // checkLike = ()=>{
-  //   return this.state.movies.
-  // } 
   handleLike = movie=>{
     const movies = this.state.movies;
     const index = this.state.movies.indexOf(movie);
