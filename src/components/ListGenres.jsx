@@ -1,6 +1,5 @@
 import React from 'react';
-
-const ListMovies = (props) => {
+const ListMovies = props => {
     const {items,valueProperty,textProperty,onItemSelect,selectedGenre} = props;
     return (  
             <ul className="list-group">
