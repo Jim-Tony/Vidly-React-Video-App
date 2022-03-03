@@ -1,12 +1,11 @@
 import React from 'react';
 
 const ListMovies = (props) => {
-    const {items,valueProperty,textProperty} = props;
+    const {items,valueProperty,textProperty,onItemSelect,selectedGenre} = props;
     return (  
             <ul className="list-group">
-                <li className="list-group-item">All Genres</li>
                 {items.map(g=>
-                    <li key={g[valueProperty]} className='list-group-item' onClick={()=>props.onItemSelect(g[textProperty])}>{g[textProperty]}</li>)
+                    <li key={g[valueProperty]} className={selectedGenre===g?'list-group-item active':'list-group-item'} onClick={()=>onItemSelect(g)}>{g[textProperty]}</li>)
                 }
             </ul>
     );

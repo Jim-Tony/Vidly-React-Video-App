@@ -15,10 +15,11 @@ class App extends Component {
     genres:[],
   };
   componentDidMount(){
-    this.setState({movies:getMovies(),genres:getGenres()});
+    const genres = [{name:'All Genres'},...getGenres()];
+    this.setState({movies:getMovies(),genres});
   }
   handleLike = movie=>{
-    const movies = this.state.movies;
+    const movies = [...this.state.movies];
     const index = this.state.movies.indexOf(movie);
     movies[index].liked = !movies[index].liked;
     this.setState({movies}); 
@@ -31,13 +32,12 @@ class App extends Component {
     this.setState({currentPage:page})
   }
   handleGenreSelect = genre=>{
-    const moviesGenre = [...this.state.movies];
-    this.setState({movies:moviesGenre.filter(m=>m.genre.name===genre)});
+    this.setState({currentGenre:genre,currentPage:1});
   }
   render() { 
-    const count = this.state.movies.length;
-    const {currentPage,pageSize,movies:moviesAll} = this.state;
-    const movies = paginate(moviesAll,currentPage,pageSize);
+    const {currentPage,pageSize,currentGenre,movies:moviesAll} = this.state;
+    const filtered = (currentGenre && currentGenre._id) ? moviesAll.filter(m=>m.genre._id===currentGenre._id) : moviesAll;
+    const movies = paginate(filtered,currentPage,pageSize);
     return (
       <main className='container'>
         <div className='row'>
@@ -45,6 +45,7 @@ class App extends Component {
             <ListGenres 
               items={this.state.genres} 
               onItemSelect={this.handleGenreSelect}
+              selectedGenre = {this.state.currentGenre}
             />
           </div>
           <div className='col'>
@@ -54,7 +55,7 @@ class App extends Component {
               onClick = {this.handleLike}
             />
             <Pagination 
-              itemCount = {count}
+              itemCount = {filtered.length}
               currentPage = {currentPage} 
               pageSize={pageSize} 
               onPageChange = {this.handlePageChange} 
