@@ -1,9 +1,9 @@
 import React from 'react';
-const MovieForm = () => {
+const MovieForm = ({match,history}) => {
     return ( 
-        <div>
-            <h1 className='m-5'>Movie Form</h1>
-            <div><button className="btn btn-primary">Save</button></div>
+        <div className='m-5'>
+            <h1>Movie Form {match.params._id}</h1>
+            <button className="btn btn-primary" onClick={()=>history.push('/movies')}>Save</button>
         </div>
     );
 }
