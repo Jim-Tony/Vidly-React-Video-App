@@ -10,7 +10,7 @@ class LoginForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className='form-group mb-3'>
                         <label className='form-label' htmlFor="username">User Name</label>
-                        <input autoFocus className='form-control' id='username' type="text" />
+                        <input autoFocus autoComplete='off' className='form-control' id='username' type="text" />
                     </div>
                     <div className='form-group mb-3'>
                         <label className='form-label' htmlFor="password">Password</label>
