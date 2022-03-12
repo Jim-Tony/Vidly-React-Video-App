@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 class LoginForm extends Component { 
+    handleSubmit = e=>{
+        e.preventDefault();
+    };
     render() { 
         return (
             <div className="w-25 m-5">
                 <h1>Login</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className='form-group mb-3'>
                         <label className='form-label' htmlFor="username">User Name</label>
                         <input className='form-control' id='username' type="text" />
@@ -19,5 +22,4 @@ class LoginForm extends Component {
         );
     }
 }
- 
 export default LoginForm;
