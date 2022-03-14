@@ -15,8 +15,8 @@ class LoginForm extends Component {
     render() { 
         const {account} = this.state;
         return (
-            <div className="w-25 m-5">
-                <h1>Login</h1>
+            <div className="center">
+                <h1 className='text-center'>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup
                         name="username"
@@ -32,7 +32,7 @@ class LoginForm extends Component {
                         type="password"
                         onChange={this.handleChange}
                     />
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn btn-primary btn-center">Login</button>
                 </form>    
             </div>
         );
