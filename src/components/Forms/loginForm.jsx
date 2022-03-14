@@ -32,7 +32,7 @@ class LoginForm extends Component {
                         type="password"
                         onChange={this.handleChange}
                     />
-                    <button className="btn btn-primary">Submit</button>
+                    <button className="btn btn-primary">Login</button>
                 </form>    
             </div>
         );
