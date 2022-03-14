@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormGroup from './formGroup';
 class LoginForm extends Component { 
     state={
         account:{username:'',password:''},
@@ -17,14 +18,20 @@ class LoginForm extends Component {
             <div className="w-25 m-5">
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <div className='form-group mb-3'>
-                        <label className='form-label' htmlFor="username">User Name</label>
-                        <input name='username' onChange={this.handleChange} value={account.username} autoFocus autoComplete='off' className='form-control' id='username' type="text" />
-                    </div>
-                    <div className='form-group mb-3'>
-                        <label className='form-label' htmlFor="password">Password</label>
-                        <input name='password' onChange={this.handleChange} value={account.password} className='form-control' id='password' type="password" />
-                    </div>
+                    <FormGroup
+                        name="username"
+                        label="Username"
+                        value={account.username}
+                        type="text"
+                        onChange={this.handleChange}
+                    />
+                    <FormGroup
+                        name="password"
+                        label="Password"
+                        value={account.password}
+                        type="password"
+                        onChange={this.handleChange}
+                    />
                     <button className="btn btn-primary">Submit</button>
                 </form>    
             </div>
