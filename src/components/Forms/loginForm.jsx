@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Joi from 'joi-browser';
 import FormGroup from './formGroup';
 class LoginForm extends Component { 
     state={
         account:{username:'',password:''},
         errors:{},
+    };
+    schema={
+        username:Joi.string().required().label('Username'),
+        password:Joi.string().required().label('Password')
     };
     validateProperty = ({name,value})=>{
         if(name==='username'){
@@ -13,20 +18,27 @@ class LoginForm extends Component {
             if(value.trim()==='') return 'Password is required'
         }
     }
+    validate = ()=>{
+        const result = Joi.validate(this.state.account,this.schema,{abortEarly:false});
+        console.log(result);
+        if(!result) return null;
+        const errors = {};
+        result.error.details.forEach(e=>errors[e.path[0]] = e.message);
+
+        return errors;
+        // const {account} = this.state;
+        // if(account.username.trim()==='') errors.username = 'Username is required';
+        // if(account.password.trim()==='') errors.password = 'Password is required'; 
+        // return Object.keys(errors).length === 0 ? null:errors;
+    }
     handleChange = ({currentTarget:input})=>{
         const errors = {...this.state.errors};
         const errorMsg = this.validateProperty(input);
         if(errorMsg) errors[input.name] = errorMsg;
+        else delete errors[input.name];
         const account = {...this.state.account};
         account[input.name] = input.value
         this.setState({account,errors});
-    }
-    validate = ()=>{
-        const {account} = this.state;
-        const errors = {};
-        if(account.username.trim()==='') errors.username = 'Username is required';
-        if(account.password.trim()==='') errors.password = 'Password is required'; 
-        return Object.keys(errors).length === 0 ? null:errors;
     }
     handleSubmit = e=>{ 
         e.preventDefault();
