@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joi  from 'joi-browser';
-import FormGroup from './formGroup';
+import Input from './input';
+import Select from './select';
 class Form extends Component {
     state = {
         data:{},
@@ -40,15 +41,26 @@ class Form extends Component {
     renderButton = (label)=>{
         return <button disabled={this.validate()} className="btn btn-primary btn-center">{label}</button>
     }
-    renderFormGroup = (name,label,type)=>{
+    renderInput = (name,label,type)=>{
         const {data,errors} = this.state;
-        return <FormGroup
+        return <Input
             name={name}
             label={label}
             value={data[name]}
             type={type}
             onChange={this.handleChange}
             error={errors[name]}
+        />
+    }
+    renderSelect = (name,label,options)=>{
+        const {data,errors} = this.state;
+        return <Select
+            name={name}
+            label={label}
+            options={options}
+            value={data[name]}
+            error={errors[name]}
+            onChange={this.handleChange}
         />
     }
 }

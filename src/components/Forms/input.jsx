@@ -1,5 +1,5 @@
 import React from 'react';
-const FormGroup = (props) => {
+const Input = (props) => {
     const {name,label,onChange,value,type,error} = props;
     return ( 
         <div className='form-group mb-3'>
@@ -10,4 +10,4 @@ const FormGroup = (props) => {
     );
 }
  
-export default FormGroup;
+export default Input;

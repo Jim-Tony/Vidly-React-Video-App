@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Movies from './Movies';
 import Pagination from './Pagination';
 import ListGenres from './ListGenres';
@@ -63,7 +64,8 @@ class MoviesTable extends Component {
                 />
               </div>
               <div className='col'>
-                <Movies 
+                <Link to="/movies/new" className="btn btn-primary" style={{marginBottom:-40,marginTop:50}}>New Movie</Link>
+                <Movies
                   movies={movies}
                   sortColumn={sortColumn}
                   onDelete = {this.handleDelete}  

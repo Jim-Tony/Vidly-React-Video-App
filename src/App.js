@@ -5,7 +5,7 @@ import NavBar from './components/navBar';
 import Customers from './components/customers';
 import Rentals from './components/rentals';
 import NotFound from './components/notFound';
-import MovieForm from './components/movieForm';
+import MovieForm from './components/Forms/movieForm';
 import LoginForm from './components/Forms/loginForm';
 import RegisterForm from './components/Forms/registerForm';
 import './App.css';
@@ -17,6 +17,7 @@ class App extends Component {
           <div className='content'>
             <Switch>
               <Route path="/movies/:_id" component={MovieForm}/>
+              {/* <Route path="/movies/new" component={MovieForm}/> */}
               <Route path="/movies" component={MoviesTable}/>
               <Route path="/customers" component={Customers}/>
               <Route path="/rentals" component={Rentals}/>
