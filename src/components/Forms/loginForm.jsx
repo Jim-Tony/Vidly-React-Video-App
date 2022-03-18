@@ -14,7 +14,6 @@ class LoginForm extends Form {
         console.log("Submitted");
     }
     render() { 
-       
         return (
             <div className="center">
                 <h1 className='text-center'>Login</h1>
