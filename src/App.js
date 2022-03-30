@@ -14,10 +14,9 @@ class App extends Component {
     return (
         <React.Fragment>
           <NavBar/>
-          <div className='content'>
+          <div className='content bg'>
             <Switch>
               <Route path="/movies/:_id" component={MovieForm}/>
-              {/* <Route path="/movies/new" component={MovieForm}/> */}
               <Route path="/movies" component={MoviesTable}/>
               <Route path="/customers" component={Customers}/>
               <Route path="/rentals" component={Rentals}/>
